@@ -1,25 +1,28 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import {CompaniesList} from './CompaniesList';
 import './App.css';
 
+
 class App extends Component {
+  constructor(){
+    super();
+
+    const companiesDb = [
+      {id: 1, name: "Ford Polska", email: "ford@wp.pl"},
+      {id: 2, name: "Fiat Italy", email: "fiat@wp.pl"},
+      {id: 3, name: "Audi Niemcy", email: "audi@wp.pl"}
+    ]
+
+    this.state = {
+      companies: companiesDb
+    }
+  }
+  
+  
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <CompaniesList companies = {this.state.companies}/>
       </div>
     );
   }
