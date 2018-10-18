@@ -1,18 +1,31 @@
 import * as React from "react";
 import { CompanyItem } from "./CompanyItem";
+import { EditCompanyItem } from "./EditCompanyItem";
 
 export class CompaniesList extends React.Component {
+  
   companyToCompanyItem = company => {
-    const { id, name, email } = company;
+    const { id, name, email, editing } = company;
     const key = company.name;
-    return <CompanyItem key={key} id={id} name={name} email={email} />;
+    return editing ? <EditCompanyItem key={key} id={id} name={name} email={email} onSave={this.props.onSaveCompany}/> :
+                     <CompanyItem key={key} id={id} name={name} email={email} onDelete={this.props.onDeleteCompany} onEdit={this.props.onEditCompany} />;
   };
 
   render() {
     return (
-      <ul className="ui relaxed divided list selection">
-        {this.props.companies.map(this.companyToCompanyItem)}
-      </ul>
+      <table className="table table-striped table-dark">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {this.props.companies.map(this.companyToCompanyItem)}
+        </tbody>
+      </table>
     );
   }
 }
