@@ -29,13 +29,13 @@ export class AddCompany extends React.Component {
             <div>
                 <h1>Add company</h1>
                 <form onSubmit={this.onAddCompanySubmit}>
-                    <div className="form-group row">
+                    <div className="form-group">
                         <input type="text" className="form-control" id="inputName" placeholder="Company name" value={this.state.name} onChange={this.onChangeInputName}/>
                     </div>
-                    <div className="form-group row">
+                    <div className="form-group">
                         <input type="email" className="form-control" id="inputEmail" placeholder="Email" value={this.state.email} onChange={this.onChangeInputEmail}/>
                     </div>
-                    <div className="form-group row">
+                    <div className="form-group">
                         <div className="col-sm-10">
                             <button type="submit" className="btn btn-primary">Dodaj firmę</button>
                         </div>

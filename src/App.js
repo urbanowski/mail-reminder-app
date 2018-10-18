@@ -12,9 +12,9 @@ const companiesDb = [
 ]
 
 const invoicesDb = [
-  {id: 1, name: 'FV2018', amountToPay: 202.20, dateOfPayment: '20-10-2018', company: {id: 1, name: 'Ford Polska', email: 'ford@wp.pl'} },
-  {id: 2, name: 'FV2017', amountToPay: 211.20, dateOfPayment: '21-10-2018', company: {id: 2, name: 'Fiat Italy', email: 'fiat@wp.pl'} },
-  {id: 3, name: 'FV2016', amountToPay: 211.20, dateOfPayment: '21-10-2016', company: {id: 3, name: 'Audi Niemcy', email: 'audi@wp.pl'} },
+  {id: 1, name: 'FV2018', amountToPay: 202.20, dateOfPayment: '20-10-2018', company: {id: 1, name: 'Ford Polska', email: 'ford@wp.pl'}, isPaid: false },
+  {id: 2, name: 'FV2017', amountToPay: 211.20, dateOfPayment: '21-10-2018', company: {id: 2, name: 'Fiat Italy', email: 'fiat@wp.pl'}, isPaid: true },
+  {id: 3, name: 'FV2016', amountToPay: 211.20, dateOfPayment: '21-10-2016', company: {id: 3, name: 'Audi Niemcy', email: 'audi@wp.pl'}, isPaid: false },
 
 ]
 
@@ -55,6 +55,11 @@ class App extends Component {
     this.setState({companies});
   }
 
+  canDeleteCompany = (id) =>{
+    const invoices = this.getInvoices();
+    return invoices.some(invoice => invoice.company.id === id);
+  }
+
   onDeleteCompany = (id) =>{
     const companies = this.getCompanies();
     const filteredCompanies = companies.filter(company =>{
@@ -90,7 +95,7 @@ class App extends Component {
     const selectedCompany = companies.find(company =>{return company.id === companyId});
     // console.log(typeof(companyId))
     // alert(`Dane ${nextFreeId} ${name}, ${amountToPay}, ${dateOfPayment}, ${companyId} wybrana firma to: ${companyWithId.name}`)
-    invoices.push({id: nextFreeId, name: name, amountToPay: amountToPay, dateOfPayment: dateOfPayment, company: selectedCompany });
+    invoices.push({id: nextFreeId, name: name, amountToPay: amountToPay, dateOfPayment: dateOfPayment, company: selectedCompany, isPaid: false});
     this.setState({invoices});
   }
 
@@ -104,6 +109,7 @@ class App extends Component {
                            onDeleteCompany = {this.onDeleteCompany} 
                            onEditCompany={this.onEditCompany} 
                            onSaveCompany={this.onSaveCompany}
+                           canDeleteCompany={this.canDeleteCompany}
                            />
           </div>
           <div className="col-sm">

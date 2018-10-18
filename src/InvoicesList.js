@@ -6,7 +6,7 @@ export class InvoicesList extends React.Component {
   invoiceToInvoiceItem = invoice => {
 //   {id: 2, name: 'FV2017', amountToPay: 211.20, dateOfPayment: '21-10-2018', company: {id: 1, name: 'Ford Polska', email: 'ford@wp.pl'} },
     
-    const { id, name, amountToPay, dateOfPayment, company: {name : companyName, email: companyEmail}} = invoice
+    const { id, name, amountToPay, dateOfPayment, company: {name : companyName, email: companyEmail}, isPaid} = invoice
     const key = invoice.name;
     // return editing ? <EditCompanyItem key={key} id={id} name={name} email={email} onSave={this.props.onSaveCompany}/> :
     //                  <CompanyItem key={key} id={id} name={name} email={email} onDelete={this.props.onDeleteCompany} onEdit={this.props.onEditCompany} />;
@@ -17,13 +17,14 @@ export class InvoicesList extends React.Component {
                        amountToPay = {amountToPay} 
                        dateOfPayment = {dateOfPayment} 
                        companyName = {companyName} 
-                       companyEmail = {companyEmail}/>  
+                       companyEmail = {companyEmail}
+                       isPaid = {isPaid}/>  
   };
 
   render() {
     return (
       <table className="table table-striped table-dark">
-        <thead>
+        <thead className="thead-table">
           <tr>
             <th scope="col">Id</th>
             <th scope="col">Name</th>
@@ -31,6 +32,7 @@ export class InvoicesList extends React.Component {
             <th scope="col">DateOfPayment</th>
             <th scope="col">CompanyName</th>
             <th scope="col">CompanyEmail</th>
+            <th scope="col">IsPaid</th>
             <th scope="col">Actions</th>            
           </tr>
         </thead>

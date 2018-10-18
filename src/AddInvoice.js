@@ -40,9 +40,15 @@ export class AddInvoice extends React.Component {
             <div>
                 <h1>Add invoice</h1>
                 <form onSubmit={this.onAddInvoiceSubmit}>
-                    <input className="form-control" type="text" placeholder="Invoice name" value={this.state.name} onChange={this.onChangeInputName}/>
-                    <input className="form-control" type="text" placeholder="Amount to Pay" value={this.state.amountToPay} onChange={this.onChangeInputAmountToPay}/>
-                    <input className="form-control" type="text" placeholder="Date of Payment" value={this.state.dateOfPayment} onChange={this.onChangeInputDateOfPayment}/>
+                    <div className="form-group">
+                        <input className="form-control" type="text" placeholder="Invoice name" value={this.state.name} onChange={this.onChangeInputName}/>
+                    </div>
+                    <div className="form-group">
+                        <input className="form-control" type="number" min="0.00" max="10000.00" step="0.01" placeholder="Amount to Pay" value={this.state.amountToPay} onChange={this.onChangeInputAmountToPay}/>
+                    </div>
+                    <div className="form-group">
+                        <input className="form-control" type="date" placeholder="Date of Payment" value={this.state.dateOfPayment} onChange={this.onChangeInputDateOfPayment}/>
+                    </div>
                     <div className="form-group">
                         <label htmlFor="companiesSelect">Wybierz firmę</label>
                         <select className="form-control" id="companiesSelect" value={this.state.selectedCompanyId} onChange={this.onChangeSelectCompany}>
@@ -51,7 +57,7 @@ export class AddInvoice extends React.Component {
                     </div>
                     <div className="form-group row">
                         <div className="col-sm-10">
-                            <button type="submit" className="btn btn-primary">Dodaj firmę</button>
+                            <button type="submit" className="btn btn-primary">Dodaj fakturę</button>
                         </div>
                     </div>
                 </form>

@@ -16,8 +16,19 @@ export class CompanyItem extends Component {
     onEdit(id)
   }
 
-  onDelete = () =>{
+// fukcja sprawdza czy mogę usunąć firmę z bazy(listy) - czy nie widnieje w rejestrze faktur 
+  canDelete = (id) => {
+    const {canDelete} = this.props;
+    return canDelete(id);
+    // alert(`sprawdzam czy mogę usunać ${id}`)
+  }
+
+  onDelete = () =>{    
     const {onDelete, id} = this.props;
+    if (this.canDelete(id)){
+      alert(`W bazie jest zarejestrowana faktura z firmą którą chcesz usunąć`)
+      return;
+    }
     onDelete(id);
   }
 

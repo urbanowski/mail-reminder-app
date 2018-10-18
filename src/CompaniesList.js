@@ -8,13 +8,13 @@ export class CompaniesList extends React.Component {
     const { id, name, email, editing } = company;
     const key = company.name;
     return editing ? <EditCompanyItem key={key} id={id} name={name} email={email} onSave={this.props.onSaveCompany}/> :
-                     <CompanyItem key={key} id={id} name={name} email={email} onDelete={this.props.onDeleteCompany} onEdit={this.props.onEditCompany} />;
+                     <CompanyItem key={key} id={id} name={name} email={email} onDelete={this.props.onDeleteCompany} onEdit={this.props.onEditCompany} canDelete={this.props.canDeleteCompany}  />;
   };
 
   render() {
     return (
       <table className="table table-striped table-dark">
-        <thead>
+        <thead className="thead-table">
           <tr>
             <th scope="col">Id</th>
             <th scope="col">Name</th>

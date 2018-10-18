@@ -22,7 +22,7 @@ export class InvoiceItem extends Component {
 //   }
 
   render(){
-    const { id, name, amountToPay, dateOfPayment, companyName, companyEmail } = this.props;
+    const { id, name, amountToPay, dateOfPayment, companyName, companyEmail, isPaid } = this.props;
 
     return (
       <tr>
@@ -31,7 +31,9 @@ export class InvoiceItem extends Component {
         <td>{amountToPay}</td>
         <td>{dateOfPayment}</td>
         <td>{companyName}</td>
-        <td>{companyEmail}</td>        
+        <td>{companyEmail}</td>
+        {isPaid ? <td className="isPaid">YES</td> : <td className="notPaid">NO</td>}  
+        {/* <td>{isPaid ? 'Zapłacone' : 'Niezapłacone'}</td>         */}
         <td>
           <button className="btn btn-primary btn-sm" onClick={this.onEdit}>Edit</button>
           <button className="btn btn-danger btn-sm" onClick={this.onDelete}>Delete</button>
